@@ -5,4 +5,4 @@
 - Discuss alternative variants
 
 ### Hints
-- In Eclipse, after cloning the repository, you can import using the "Import existing Eclipse projects" option
+- In Eclipse, after cloning the repository, you can import this folder using the "Import existing Eclipse projects" option
