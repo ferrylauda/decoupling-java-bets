@@ -31,6 +31,11 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.4.7</version>
+			</plugin>
 		</plugins>
 	</build>
 </project>

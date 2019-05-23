@@ -18,3 +18,12 @@
 
 - Apparently the Bets, within its "bet" method, does two things - one of it is not really related to the core business logic, and makes it also hard to test at this point
 - If you want to try using a mock framework, have a look into Mockito. A dependency has already been added to the pom.xml, so you can use it right away. The documentation can be found here: http://mockito.org/
+
+## Test support tools
+- To continuously execute your tests you can use [Infinitest](http://infinitest.github.io/) which has plugins for Eclipse and IntelliJ
+- To get code coverage statistics you can use:
+	- IntelliJ's built-in [code coverage runner](https://www.jetbrains.com/help/idea/code-coverage.html)
+	- [EclEmma](https://www.eclemma.org/) plugin for Eclipse
+- Mutation tests are available using the PIT maven plugin.
+	- Simply run `mvn org.pitest:pitest-maven:mutationCoverage` the report will be available at **target/pit-reports/{timestamp}/index.html**
+	- NOTE: If pitest reports any problems you can try to run `mvn install` and then retry.
