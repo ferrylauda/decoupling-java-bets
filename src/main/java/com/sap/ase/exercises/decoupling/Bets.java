@@ -11,22 +11,23 @@ import java.util.Map;
 
 public class Bets {
 
+	private final BetsDAO betsDAO;
+
+	public Bets(BetsDAO betsDAO) {
+		this.betsDAO = betsDAO;
+	}
+
 	private final Map<String, Integer> bets = new HashMap<String, Integer>();
 
 	public void bet(String player, int amount) {
-		try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5740/poker");
-				Statement stmt = conn.createStatement()) {
-			ResultSet rs = stmt.executeQuery("select value from configuration where key = 'bet_limit'");
-			rs.next();
-			int limit = Integer.parseInt(rs.getString("bet_limit"));
-			if (amount > limit) {
-				throw new ExceedsBetLimit(amount + " exceeds maximum bet limit of " + limit);
-			} else {
-				bets.put(player, amount);
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
+
+		int limit = betsDAO.getLimit();
+		if (amount > limit) {
+			throw new ExceedsBetLimit(amount + " exceeds maximum bet limit of " + limit);
+		} else {
+			bets.put(player, amount);
 		}
+
 	}
 
 	public boolean areEven() throws NotEnoughPlayers {
